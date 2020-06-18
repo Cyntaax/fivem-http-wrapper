@@ -40,7 +40,7 @@ end)
 ```
 
 ```shell
-curl -X POST http://localhost:30120/test-resource/my-endpoint
+curl -X POST http://localhost:30120/test-resource/myendpoint
 ```
 
 Should return
