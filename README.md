@@ -16,7 +16,7 @@ require `HTTP.lua` in the `fxmanifest.lua`, i.e.
 
 ```lua
 server_scripts {
-    '@http-wrapperp/HTTP.lua'
+    '@http-wrapper/HTTP.lua'
 }
 ```
 
