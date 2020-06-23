@@ -5,7 +5,7 @@ This is just something I created for personal use, but publishing since it seems
 
 This wrapper makes it very easy to create endpoints for you FiveM server. This only supports `GET` and `POST` requests for the time being.
 
-For post requests, it will assume the body to be `json` and decode it to be available in `res.body`
+For post requests, it will assume the body to be `json` and decode it to be available in `req.body`
 
 There are some thing that could be made easier and will be in time!
 
