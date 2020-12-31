@@ -20,6 +20,7 @@ if SetHttpHandler == nil then
     end
 end
 
+--- Starts the server. Call this after all routes have been created
 function Server.listen()
     SetHttpHandler(function(req, res)
         print(req.method .. " => " .. req.path)
@@ -35,11 +36,13 @@ function Server.listen()
                         if z.pathData then
                             local start = 1
                             for i,j in path:gmatch(z.path) do
-                                if z.pathData.params[start] == nil then break end
+                                print("checking path", i, start)
+                                if z.pathData.params[start] == nil then print("breaking") break end
                                 z.pathData.params[start].value = i
                                 start = start + 1
                             end
                             for i,j in pairs(z.pathData.params) do
+                                print("setting param", j.name, j.value)
                                 request:SetParam(j.name, j.value)
                             end
                         end
@@ -82,7 +85,9 @@ function Server.listen()
     end)
 end
 
-
+--- Specifies a handler/middleware for the server to use
+---@param path string The path for this handler
+---@param handler Router The router to handle this path
 function Server.use(path, handler)
     if type(path) == "string" then
         if type(handler) == "function" then

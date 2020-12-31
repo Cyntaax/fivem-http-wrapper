@@ -20,6 +20,11 @@ r:Post("/:userid", function(req, res)
     res:Send("user id was " .. req:Param("userid"))
 end)
 
+r:Post("/:userid/:other", function(req, res)
+    print("user id was ", req:Param("userid"), " and other was ", req:Param("other"))
+    return 200, ""
+end)
+
 r:Get("/test/something", function(req, res)
     print("/user/test endpoint")
 end)
@@ -29,7 +34,7 @@ Server.use("/users", r)
 Server.listen()
 
 local request = {
-    path = "/users/stephen",
+    path = "/users/stephen/hello",
     method = "POST",
     body = 'regular text',
     setDataHandler = function(cb)

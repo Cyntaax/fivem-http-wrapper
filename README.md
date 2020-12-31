@@ -1,20 +1,51 @@
+#FiveM Lua HTTP Wrapper
+
+### Create endpoints in your resources with ease!
+
+### Features
+    - Router
+    - Automatic JSON data handling
+    - Pattern based routes
+
+### Examples
+
+Simple example
+
+```lua
 local r = Router.new()
-
-r:Post("/", function(req, res)
-print("Handling stuff")
-return 200, {data = "sent"}
+r:Get("/", function(req, res)
+    res:Send("A Simple response!")
 end)
 
-r:Post("/:userid", function(req, res)
-print("user id post", req:Param("userid"))
-print("Body", req:Body())
-res:Send("user id was " .. req:Param("userid"))
+Server.use("", r)
+Server.listen()
+```
+
+You can also use return values, an alternative to the above:
+```lua
+local r = Router.new()
+r:Get("/", function(req, res)
+    return 200, "A simple response!"
 end)
 
-r:Get("/test/something", function(req, res)
-print("/user/test endpoint")
+Server.use("", r)
+Server.listen()
+```
+
+Pattern Based Routes
+```lua
+local r = Router.new()
+r:Get("/:steamid", function(req, res)
+    local steamid = req:Param("steamid")
+    res.send("The steam id was " .. steamid)
 end)
 
 Server.use("/users", r)
-
 Server.listen()
+```
+
+```
+curl -X GET http://localhost:30120/resource-name/users/steam:9494000210
+The steam id was steam:9494000210
+```
+

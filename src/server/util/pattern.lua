@@ -1,3 +1,5 @@
+---@private
+--- Converts a string pattern "`/users/:id`" to an object for the Request class to use
 function PatternToRoute(input)
     if input == "/" then input = "" end
     local routeData = {
