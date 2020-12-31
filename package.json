@@ -1,4 +1,5 @@
 {
+  "name": "fivem-http-wrapper",
   "scripts": {
     "release": "semantic-release --debug true",
     "release-ci": "semantic-release",
