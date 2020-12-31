@@ -42,7 +42,6 @@ class LuaBuilder {
     }
 
     private isFileIgnored(name: string): boolean {
-        console.log("checking", name)
         const base = path.basename(name)
         const found = this.ignores.find(v => v.indexOf(base) > -1)
         return found !== undefined
