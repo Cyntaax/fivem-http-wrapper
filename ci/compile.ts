@@ -12,7 +12,7 @@ const getFileContents = (filePath: string): Promise<Buffer> => {
     })
 }
 
-const outDir = process.argv[3] || './dist/fxl'
+const outDir = process.argv[3] || './dist/http-wrapper'
 
 type Context = "client" | "server" | "shared"
 
