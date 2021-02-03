@@ -39,7 +39,10 @@ end
 
 --- Sends the response. If the data type is a table, it will be automatically converted to a JSON string
 ---@param data string|table The data to send
-function Response:Send(data)
+---@param status number The http status of the response
+function Response:Send(data, status)
+    status = tonumber(status) or 200
+    self:Status(status)
     if type(data) ~= "string" then
         if type(data) == "number" then
             data = tostring(data)
@@ -47,6 +50,9 @@ function Response:Send(data)
             data = tostring(data)
         elseif type(data) == "table" then
             data = json.encode(data) or ""
+            if data ~= "" then
+                self:SetHeader("content-type", "application/json")
+            end
         end
     end
 

@@ -48,7 +48,7 @@ function Server.listen()
                         end
                         if z.method == "POST" then
                             req.setDataHandler(function(data)
-                                request._Body = json.encode(data) or ""
+                                request._Body = json.decode(data) or ""
                                 local status, ret = z.handler(request, response)
                                 if status ~= nil then
                                     if type(status) == "number" then
