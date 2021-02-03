@@ -64,8 +64,8 @@ class LuaBuilder {
 
     private writeContext(context: string, buff: Buffer): Promise<void> {
         return new Promise((resolve, reject) => {
-            fs.mkdir(outDir, () => {
-                fs.mkdir(`${outDir}/${context}`, () => {
+            fs.mkdir(outDir, {recursive: true}, () => {
+                fs.mkdir(`${outDir}/${context}`, {recursive: true}, () => {
                     fs.writeFile(`${outDir}/${context}/${context}.lua`, buff, (err) => {
                         resolve()
                     })
